@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NightForge V1</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="card">
+  <div class="brand">🌑 NIGHTFORGE <span>V1</span></div>
+  <p class="sub">Lightweight cinematic clip maker for sci-fi & horror.</p>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="notice">{{ messages[0] }}</div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="post" enctype="multipart/form-data">
+    <label class="upload">
+      <strong>Choose a scene image</strong>
+      <input type="file" name="image" accept=".jpg,.jpeg,.png,.webp" required>
+      <small>JPG / PNG / WEBP · max 8 MB</small>
+    </label>
+
+    <label>Camera movement
+      <select name="motion">
+        <option value="zoom">Slow cinematic push-in</option>
+        <option value="left">Pan left → right</option>
+        <option value="right">Pan right → left</option>
+      </select>
+    </label>
+
+    <fieldset>
+      <legend>Atmosphere</legend>
+      <label><input type="checkbox" name="flicker"> Emergency-light flicker</label>
+      <label><input type="checkbox" name="fog"> Dark/foggy mood</label>
+      <label><input type="checkbox" name="shake"> Subtle camera shake</label>
+    </fieldset>
+
+    <button type="submit">⚡ GENERATE 10-SECOND CLIP</button>
+  </form>
+
+  <p class="foot">720p · 24 FPS · lightweight rendering · no AI model required</p>
+</main>
+</body>
+</html>
